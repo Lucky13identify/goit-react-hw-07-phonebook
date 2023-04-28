@@ -11,7 +11,6 @@ export function App() {
   const dispatch = useDispatch();
   const contactsArr = useSelector(state => state.contacts.items);
   const filterValue = useSelector(state => state.filter);
-  console.log(contactsArr);
 
   useEffect(() => {
     dispatch(fetchContacts());

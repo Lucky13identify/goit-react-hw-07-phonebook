@@ -12,24 +12,26 @@ export const fetchContacts = createAsyncThunk('contacts/fetchAll', async () => {
   }
 });
 
-export const addContact = createAsyncThunk('contacts/addContact', data => {
-  try {
-    fetch('https://644949c5e7eb3378ca4532e7.mockapi.io/contacts', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ ...data }),
-    });
-  } catch (e) {
-    console.log(e);
+export const addContact = createAsyncThunk(
+  'contacts/addContact',
+  async data => {
+    try {
+      const response = await axios.post('/contacts', data);
+      return response.data;
+    } catch (e) {
+      console.log(e);
+    }
   }
-});
+);
 
-export const deleteContact = createAsyncThunk('contacts/deleteContact', id => {
-  try {
-    fetch(`https://644949c5e7eb3378ca4532e7.mockapi.io/contacts/${id}`, {
-      method: 'DELETE',
-    });
-  } catch (e) {
-    console.log(e);
+export const deleteContact = createAsyncThunk(
+  'contacts/deleteContact',
+  async id => {
+    try {
+      const response = await axios.delete(`/contacts/${id}`);
+      return response.data;
+    } catch (e) {
+      console.log(e);
+    }
   }
-});
+);
